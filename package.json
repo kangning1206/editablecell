@@ -37,9 +37,6 @@
     "webpack": "^2.7.0",
     "webpack-dev-server": "^2.4.5"
   },
-  "pre-commit": [
-    "eslint"
-  ],
   "dependencies": {
     "ant-design-vue": "^1.3.10",
     "moment": "^2.24.0"
