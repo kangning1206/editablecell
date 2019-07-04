@@ -16,7 +16,7 @@
       </template>
 
       <template slot="country" slot-scope="text, record">
-        <editable-cell :ref="`country_${record.key}`" formType="select" :defaultEditable="record.editable" :required="true" message='请选择国籍' :value="record.countryCode" :text="record.countryName" @change="onCellChange(record.key, 'countryCode', $event)">
+        <editable-cell :ref="`countryCode_${record.key}`" formType="select" :defaultEditable="record.editable" :required="true" message='请选择国籍' :value="record.countryCode" :text="record.countryName" @change="onCellChange(record.key, 'countryCode', $event)">
           <a-select-option value="01">
             China
           </a-select-option>
@@ -27,7 +27,7 @@
       </template>
 
       <template slot="hasCar" slot-scope="text, record">
-        <editable-cell :ref="`switch_${record.key}`" formType="switch" :defaultEditable="record.editable" :required="true" message='请选择是否有car' :value="text" :text="()=>{
+        <editable-cell :ref="`hasCar_${record.key}`" formType="switch" :defaultEditable="record.editable" :required="true" message='请选择是否有car' :value="text" :text="()=>{
           if (text){
             return '有';
           }
@@ -184,7 +184,7 @@ export default {
       }
     },
     save(key) {
-      let fields = ['name', 'age', 'birthday'];
+      let fields = ['name', 'age', 'birthday','hasCar','countryCode'];
       this.validateRow(key, fields, (err, values) => {
         if (!err) {
           values.birthday = values.birthday.format('YYYY-MM-DD');
@@ -228,7 +228,7 @@ export default {
     },
     // 批量提交保存数据
     handleSave() {
-      let fields = ['name', 'age', 'birthday'];
+      let fields = ['name', 'age', 'birthday','hasCar','countryCode'];
       const newData = [...this.dataSource];
       // 找出处于可编辑行
       const rows = newData.filter(row => {
